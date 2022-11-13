@@ -1,0 +1,27 @@
+html {
+    font-size: 15px;
+}
+
+body {
+    font-family:  'Inter', 'Arial Rounded MT Bold', sans-serif!important;
+}
+
+.hfont, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: none !important;
+    background-color: hsla(0,0%,35%,.2);
+}
+
+::-webkit-scrollbar {
+    width: 10px !important;
+    transition: all 1s ease;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: hsla(0,0%,55%,.5);
+    border-radius: 1rem;
+}
