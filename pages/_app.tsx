@@ -4,14 +4,10 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import NProgress from 'nprogress';
 
-import 'react-toastify/dist/ReactToastify.css';
 import 'nprogress/nprogress.css';
-
 // order is important
-import 'tailwindcss/tailwind.css';
-import '@traboda/dsr/dist/tailwind.css';
+import 'chaya-ui/dist/style.css';
 import '../src/styles/style.css';
-
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -22,13 +18,13 @@ export default function TrabodaWebApp({ Component, pageProps }: AppProps) {
 
   return (
       <>
-        <Head>
-          <meta
-              name="viewport"
-              content="width=device-width, minimum-scale=1, shrink-to-fit=no, initial-scale=1"
-          />
-        </Head>
-        <Component {...pageProps} />
+          <Head>
+              <meta
+                  name="viewport"
+                  content="width=device-width, minimum-scale=1, shrink-to-fit=no, initial-scale=1"
+              />
+          </Head>
+          <Component {...pageProps} />
       </>
   );
 }

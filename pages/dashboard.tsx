@@ -1,34 +1,26 @@
-import React from "react";
+import React from 'react';
 
-import ServerFetcher from "../src/utils/server-fetcher";
-import withAppView from "../src/AppView/withAppView";
-import DashboardPage from "../src/dashboard";
+import ServerFetcher from '../src/utils/server-fetcher';
+import DashboardPage from '../src/dashboard';
+import { withPageContext } from '../src/utils';
 
 export const getServerSideProps = (ssr) => ServerFetcher({
-    ssr,
-    redirectMiddleware: (data) => {
-        if(!data?.profile?.id){
-            return {
-                destination: '/login',
-                permanent: false
-            };
-        }
-    },
+  ssr,
+  redirectMiddleware: (data) => {
+    if(!data?.profile?.id) {
+      return {
+        destination: '/login',
+        permanent: false,
+      };
+    }
+  },
 });
 
-export default withAppView(() => <DashboardPage />, {
-    meta: (data) => {
-        return {
-            title: `Dashboard | NextJS Boilerplate`
-        };
-    },
-    redirectMiddleware: (data) => {
-        if(!data?.profile?.id){
-            return {
-                destination: '/login',
-                permanent: false
-            };
-        }
-    },
-    minimal: true,
+export default withPageContext(() => <DashboardPage />, {
+  meta: () => {
+    return {
+      title: 'Dashboard | NextJS Boilerplate',
+    };
+  },
+  minimal: true,
 });

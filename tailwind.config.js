@@ -1,15 +1,19 @@
 module.exports = {
-    important: true,
-    purge: ['./src/**/*.{jsx,tsx}', './pages/**/*.{jsx,tsx}'],
-    darkMode: false,
+    content: ['./src/**/*.{jsx,tsx}', './pages/**/*.{jsx,tsx}'],
     theme: {
-        extend: {},
-    },
-    variants: {
         extend: {
-            zIndex: ['hover'],
-            filter: ['hover']
+            colors: {
+                primary: 'var(--primary)',
+                primaryTextColor: 'var(--primaryTextColor)',
+                secondary: 'var(--secondary)',
+                secondaryTextColor: 'var(--secondaryTextColor)',
+                background: 'var(--background)',
+                color: 'var(--color)',
+                warning: '#EAB308',
+                danger: '#EF4444',
+                success: '#019E4B',
+            }
         },
     },
     plugins: [],
-};
+}
