@@ -10,7 +10,8 @@
     {
       "files": ["pages/**/*.tsx"],
       "rules": {
-        "import/no-unused-modules": "off"
+        "import/no-unused-modules": "off",
+        "import/no-anonymous-default-export": "off"
       }
     }
   ],
@@ -67,7 +68,7 @@
       "caughtErrorsIgnorePattern": "^_"
     }],
     "react/jsx-one-expression-per-line": ["warn", { "allow": "single-child" }],
-    "import/no-unused-modules": [1, {"unusedExports": true}],
+    // "import/no-unused-modules": [1, {"unusedExports": true}],
 
     // for airbnb-typescript
     "keyword-spacing": "off",

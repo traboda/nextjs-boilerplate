@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { getBindingIdentifiers } from '@babel/types';
 
 import NotFoundView from '../src/shared/NotFoundView';
 import { APIFetch, withPageContext } from '../src/utils';
 import buildQueryFromFetches from '../src/utils/query-builder';
 import { ProfileFetchConfig } from '../src/utils/fetch-configs';
 import { ProfileContextType } from '../src/utils/PageContext/context';
-
-import keys = getBindingIdentifiers.keys;
 
 const NotFoundPage = () => (
     <NotFoundView
