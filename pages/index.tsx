@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react';
 
-import ServerFetcher from "../src/utils/server-fetcher";
-import { withAppView } from "../src/AppView";
-import LandingPage from "../src/landing";
+import ServerFetcher from '../src/utils/server-fetcher';
+import LandingPage from '../src/landing';
+import { withPageContext } from '../src/utils';
 
 export const getServerSideProps = (ssr) => ServerFetcher({
-    ssr,
+  ssr,
 });
 
-export default withAppView(() => <LandingPage />, {
-    meta: (data) => {
-        return {
-            title: `NextJS Boilerplate`
-        };
-    },
-    minimal: true,
+export default withPageContext(() => <LandingPage />, {
+  meta: () => {
+    return {
+      title: 'NextJS Boilerplate',
+    };
+  },
+  minimal: true,
 });
