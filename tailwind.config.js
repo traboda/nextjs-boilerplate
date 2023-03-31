@@ -1,5 +1,8 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
     content: ['./src/**/*.{jsx,tsx}', './pages/**/*.{jsx,tsx}'],
+    darkMode: 'class',
     theme: {
         extend: {
             colors: {
@@ -9,9 +12,9 @@ module.exports = {
                 secondaryTextColor: 'var(--secondaryTextColor)',
                 background: 'var(--background)',
                 color: 'var(--color)',
-                warning: '#EAB308',
-                danger: '#EF4444',
-                success: '#019E4B',
+            },
+            fontFamily: {
+                sans: ['Inter', ...defaultTheme.fontFamily.sans],
             }
         },
     },

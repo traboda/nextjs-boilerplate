@@ -30,8 +30,9 @@
     "unused-imports/no-unused-imports": 2,
     "react/jsx-first-prop-new-line": [2, "multiline"],
     "react/jsx-max-props-per-line": [2, { "when": "multiline" }],
-    "react/jsx-indent": 2,
-    "react/jsx-indent-props": 2,
+    "@typescript-eslint/indent": [2, 4],
+    "react/jsx-indent": [2, 4],
+    "react/jsx-indent-props": [2, 4],
     "no-multi-spaces": 2,
     "no-console": [2, { "allow": ["warn", "error"] }],
     "no-cond-assign": 2,
@@ -66,18 +67,11 @@
       "caughtErrorsIgnorePattern": "^_"
     }],
     "react/jsx-one-expression-per-line": ["warn", { "allow": "single-child" }],
-//    "import/no-unused-modules": [2, {"unusedExports": true}],
+    "import/no-unused-modules": [1, {"unusedExports": true}],
 
     // for airbnb-typescript
     "keyword-spacing": "off",
-    "@typescript-eslint/keyword-spacing": [2,
-      { "overrides": {
-          "if": { "after": false },
-          "for": { "after": false },
-          "while": { "after": false }
-        }
-      }
-    ],
+    "@typescript-eslint/keyword-spacing": [2],
     "@typescript-eslint/naming-convention": [2,
       {
         "selector": ["variable", "function"],

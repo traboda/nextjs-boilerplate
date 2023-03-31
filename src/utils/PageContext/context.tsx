@@ -1,31 +1,29 @@
-import { ParsedUrlQuery } from 'querystring';
-
 import { createContext } from 'react';
+import { NextApiRequestQuery } from 'next/dist/server/api-utils';
 
 export type ProfileContextType = {
-  id: string,
-  name: string,
-  username: string,
+    id: string,
+    name: string,
+    username: string,
 };
 
 type PrefetchContext = {
-  profile: ProfileContextType | null,
-  setProfile: (profile: ProfileContextType) => void,
-  data: Partial<any | object> | null,
-  setData: (data: Partial<any | object>) => void,
-  query: ParsedUrlQuery | null,
-  reload: () => void,
-  locale: string,
+    profile: ProfileContextType | null,
+    setProfile: (profile: ProfileContextType | null) => void,
+    data: Partial<any | object> | null,
+    setData: (data: Partial<any | object>) => void,
+    query?: NextApiRequestQuery,
+    reload: () => void,
+    locale: string,
 };
 
 const PrefetchContext = createContext<PrefetchContext>({
-  profile: null,
-  setProfile: () => {},
-  data: null,
-  setData: () => {},
-  query: null,
-  reload: () => {},
-  locale: 'en-US',
+    profile: null,
+    setProfile: (_) => {},
+    data: null,
+    setData: () => {},
+    reload: () => {},
+    locale: 'en-US',
 });
 
 export default PrefetchContext;

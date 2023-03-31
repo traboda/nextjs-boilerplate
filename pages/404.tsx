@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { getBindingIdentifiers } from '@babel/types';
 
 import NotFoundView from '../src/shared/NotFoundView';
 import { APIFetch, withPageContext } from '../src/utils';
 import buildQueryFromFetches from '../src/utils/query-builder';
 import { ProfileFetchConfig } from '../src/utils/fetch-configs';
 import { ProfileContextType } from '../src/utils/PageContext/context';
+
+import keys = getBindingIdentifiers.keys;
 
 const NotFoundPage = () => (
     <NotFoundView
@@ -21,33 +24,31 @@ const pageProvider = withPageContext(NotFoundPage, { fetches: [], meta: () => ({
 
 const Page = () => {
 
-  const router = useRouter();
+    const router = useRouter();
 
-  const [data, setData] = useState<{
-    profile: ProfileContextType,
-  } | null>(null);
-  const _fetches = [ProfileFetchConfig];
-  const { query, variables } = buildQueryFromFetches(_fetches);
-  const fetch = () => {
-    APIFetch<{ profile: ProfileContextType }>({
-      query,
-      variables,
-    }).then(({ data, success }) => {
-      if(success && data) {
-        setData(data);
-      }
-    });
-  };
+    const [data, setData] = useState<{
+        profile: any,
+    } | null>(null);
+    const _fetches = [ProfileFetchConfig];
+    const { query, variables } = buildQueryFromFetches(_fetches);
+    const fetch = () => {
+        APIFetch<{ profile: ProfileContextType }>({
+            query,
+            variables,
+        }).then(({ data, success }) => {
+            if (success && data) setData(data);
+        });
+    };
 
-  useEffect(fetch, []);
+    useEffect(fetch, []);
 
-  return data ? pageProvider({
-    profile: data?.profile,
-    query: null,
-    setData,
-    data,
-    locale: router.locale,
-  }) : <NotFoundPage />;
+    return data ? pageProvider({
+        profile: data?.profile,
+        query: undefined,
+        setData,
+        data,
+        locale: router.locale || 'en',
+    }) : <NotFoundPage />;
 };
 
 export default Page;

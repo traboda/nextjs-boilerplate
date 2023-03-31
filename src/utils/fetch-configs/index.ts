@@ -1,3 +1,1 @@
-import ProfileFetchConfig from './profile';
-
-export { ProfileFetchConfig };
+export { default as ProfileFetchConfig } from './profile';

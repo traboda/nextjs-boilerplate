@@ -1,14 +1,8 @@
 import React from 'react';
-import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
+import { Head, Html, Main, NextScript } from 'next/document';
 
 
-class MyDocument extends Document {
-
-  static async getInitialProps(ctx: DocumentContext) {
-    return Document.getInitialProps(ctx);
-  }
-
-  render() {
+const AppDocument = () => {
     return (
         <Html lang="en">
             <Head>
@@ -31,8 +25,6 @@ class MyDocument extends Document {
             </body>
         </Html>
     );
-  }
+};
 
-}
-
-export default MyDocument;
+export default AppDocument;

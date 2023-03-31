@@ -4,17 +4,17 @@ import { PrefetchContext } from '../utils';
 
 const LandingPage = () => {
 
-  const { profile } = useContext(PrefetchContext);
+    const { profile } = useContext(PrefetchContext);
 
-  return (
-      <div>
-          <h1>
-              Hello
-              {profile?.id ? profile?.username : 'World'}
-              !
-          </h1>
-      </div>
-  );
+    return (
+        <div>
+            <h1>
+                Hello
+                {profile?.id ? profile?.username : 'World'}
+                !
+            </h1>
+        </div>
+    );
 
 };
 

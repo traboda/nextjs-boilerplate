@@ -5,46 +5,42 @@ import { APIFetch } from '../utils';
 
 
 type useThemePreference = {
-  isLoggedIn?: boolean,
-  preferDarkTheme?: boolean,
-  defaultTheme?: ('SYSTEM' | 'DARK' | 'LIGHT')
+    isLoggedIn?: boolean,
+    preferDarkTheme?: boolean,
+    defaultTheme?: ('SYSTEM' | 'DARK' | 'LIGHT')
 };
 
-const useThemePreference = ({ isLoggedIn = false, preferDarkTheme = null, defaultTheme = 'SYSTEM' }: useThemePreference) => {
-  const [isDarkTheme, _setDarkTheme] = useState(preferDarkTheme !== null ? preferDarkTheme : defaultTheme === 'DARK');
+const useThemePreference = ({ isLoggedIn = false, preferDarkTheme = false, defaultTheme = 'SYSTEM' }: useThemePreference) => {
+    const [isDarkTheme, _setDarkTheme] = useState(preferDarkTheme !== null ? preferDarkTheme : defaultTheme === 'DARK');
 
-  useEffect(() => {
-    if(defaultTheme === 'SYSTEM') {
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-        _setDarkTheme(event.matches);
-      });
-    }
-  }, []);
+    useEffect(() => {
+        if (defaultTheme === 'SYSTEM') {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                _setDarkTheme(event.matches);
+            });
+        }
+    }, []);
 
-  const setDarkTheme = (isDarkTheme) => {
-    if(isLoggedIn) {
-      APIFetch({
-        query: `mutation ($preferDarkTheme: Boolean){
+    const setDarkTheme = (isDarkTheme: boolean) => {
+        if (isLoggedIn) {
+            APIFetch({
+                query: `mutation ($preferDarkTheme: Boolean){
                   editProfile(user: { preferDarkTheme: $preferDarkTheme }){
                     preferDarkTheme
                   }
                 }`,
-        variables: {
-          preferDarkTheme: isDarkTheme,
-        },
-      }).then(({ success, data, error }) => {
-        if(!success || error || data?.editProfile?.preferDarkTheme !== isDarkTheme) {
-          toast.error('Failed to update theme preference');
-        } else {
-          _setDarkTheme(isDarkTheme);
-        }
-      });
-    } else {
-      _setDarkTheme(isDarkTheme);
-    }
-  };
+                variables: {
+                    preferDarkTheme: isDarkTheme,
+                },
+            }).then(({ success, data, error }) => {
+                if (!success || error || data?.editProfile?.preferDarkTheme !== isDarkTheme) {
+                    toast.error('Failed to update theme preference');
+                } else _setDarkTheme(isDarkTheme);
+            });
+        } else _setDarkTheme(isDarkTheme);
+    };
 
-  return [isDarkTheme, setDarkTheme] as const;
+    return [isDarkTheme, setDarkTheme] as const;
 
 };
 

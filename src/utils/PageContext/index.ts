@@ -1,4 +1,2 @@
-import PrefetchContext from './context';
-import withPageContext from './withPageContext';
-
-export { PrefetchContext, withPageContext };
+export { default as PrefetchContext } from './context';
+export { default as withPageContext } from './withPageContext';
