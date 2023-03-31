@@ -15,7 +15,7 @@ const Icon = ({ icon, size = 30, alt = '', title = null, className = '', ariaHid
     return require.resolve(`../../public/assets/icons/${icon}.svg`) ?
       dynamic(() => import(`../../public/assets/icons/${icon}.svg`), {}) as React.FC<React.SVGProps<SVGSVGElement>> :
       null;
-  }, []);
+  }, [icon]);
 
   return (
       <div title={title || alt} className={`flex items-center justify-center ${className}`}>
